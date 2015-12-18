@@ -17,7 +17,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " neobundle自体をneobundleで管理
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-call neobundle#end()
 
 " Required:
 filetype plugin indent on " 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
@@ -161,6 +160,7 @@ autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
+call neobundle#end()
 
 " marching
 source ~/.vimrc.marching
