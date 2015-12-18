@@ -1,0 +1,50 @@
+"-----------------------------------------------------------
+" marching
+"-----------------------------------------------------------
+
+let g:marching_clang_command = "clang"
+let g:marching#clang_command#options = {
+		\ "cpp" : "-std=c++11"
+		\ }
+
+" include path
+"let g:marching_include_paths = filter(split(&path, ','), 'isdirectory(v:val)')
+"let g:marching_include_paths = filter(
+"			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/arm-wrs-linux-gnueabi/include/*'), '\n') +
+"			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/arm-wrs-linux-gnueabi/include/c++/4.4.1'), '\n') + "			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/arm-wrs-linux-gnueabi/include/c++/4.4.1/arm-wrs-linux-gnueabi/softfp'), '\n') +
+"			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/arm-wrs-linux-gnueabi/include/c++/4.4.1/backward'), '\n') +
+"			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/lib/gcc/arm-wrs-linux-gnueabi/4.4.1/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/tools/gnu/gnu-tools/xarina-20120823/x86-linux2/lib/gcc/arm-wrs-linux-gnueabi/4.4.1/include-fixed/softfp'), '\n') +
+"			\ split(glob('~/xarina_sdk/tools/gnu/sysroot/xarina-latest/sysroot/usr/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/afw/system/core/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/afw/frameworks/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/afw/frameworks/c/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/afw/external/axis2c-src-1.6.0/include'), '\n') +
+"			\ split(glob('~/xarina_sdk/afw/external/axis2c-src-1.6.0/*/include'), '\n') +
+"			\ split(glob('.'), '\n')
+"			\ , 'isdirectory(v:val)')
+
+"
+let g:marching_enable_neocomplete = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+	let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.cpp ='[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" 処理のタイミングを制御する
+" 短いほうがより早く補完ウィンドウが表示される
+" ただし、marching.vim 以外の処理にも影響するので注意する
+set updatetime=200
+
+" オムニ補完時に補完ワードを挿入したくない場合
+"imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
+"
+" キャッシュを削除してからオムに補完を行う
+" imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
+
+" 非同期ではなくて、同期処理でコード補完を行う場合
+" この設定の場合は vimproc.vim に依存しない
+" let g:marching_backend = "sync_clang_command"
+
+

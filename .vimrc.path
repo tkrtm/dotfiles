@@ -1,0 +1,75 @@
+"let s:cpp_include = filter(
+"    \ split(glob('/usr/include/*'), '\n') + 
+"    \ split(glob('/usr/include/c++/4.8.4)
+"    \ , 'isdirectory(v:val)')
+
+"---------------------------------------------------------------------------------
+"path (path & g:marching_include_paths
+"---------------------------------------------------------------------------------
+let s:cpp_include = [ 
+\    '/usr/include',
+\    '/usr/include/*',
+\    '/usr/include/c++/*/*',
+\    '/usr/include/*/c++/*']
+
+let s:xr_inc = [ 
+\    '~/xarina/xarina_e/release.base/ain1e/dev/cpu0/mw/lib/include',
+\    '~/xarina/allions/libsystem/include']
+"---------------------------------------------------------------------------------
+"path
+"---------------------------------------------------------------------------------
+let s:include_x86 = []
+for n in s:cpp_include
+    let s:include_x86 = s:include_x86 + split(glob(n), '\n')
+endfor
+let s:include_x86 = filter(s:include_x86, 'isdirectory(v:val)')
+
+"---------------------------------------------------------------------------------
+"---------------------------------------------------------------------------------
+let s:xr_x86_inc = s:xr_inc + s:cpp_include
+let s:include_xarina_x86 = []
+for n in s:xr_x86_inc
+    let s:include_xarina_x86 = s:include_xarina_x86 + split(glob(n), '\n')
+endfor
+let s:include_xarina_x86 = filter(s:include_xarina_x86, 'isdirectory(v:val)')
+"---------------------------------------------------------------------------------
+"---------------------------------------------------------------------------------
+let s:arm_sysroot = "/usr/local/poky1.8/sysroots/armv6-vfp-poky-linux-gnueabi"
+let s:cpp_include_arm = []
+for n in s:cpp_include
+    let s:cpp_include_arm = add(s:cpp_include_arm, s:arm_sysroot . n)
+endfor
+let s:cpp_include_arm = s:xr_inc + s:cpp_include_arm 
+let s:include_xarina_arm = []
+for n in s:cpp_include_arm
+    let s:include_xarina_arm = s:include_xarina_arm + split(glob(n), '\n')
+endfor
+let s:include_xarina_arm = filter(s:include_xarina_arm, 'isdirectory(v:val)')
+
+"--------------------------------------------------------------------------------
+" gtag path
+"--------------------------------------------------------------------------------
+let s:gtag_x86 = ['/usr/include/']
+let s:gtag_arm = [s:arm_sysroot . "/usr/include/"]
+
+
+
+function! ChangePath(list, list_gtag)
+	let g:marching_include_paths = a:list
+	let &path="."
+	for n in a:list
+		let &path = &path . ',' . n
+	endfor
+
+    let g:unite_source_gtags_project_config = {
+    \   '_': {
+	\     'gtags_libpath': a:list_gtag
+	\   }
+	\ }
+endfunction
+
+command! ChangePathDefault call ChangePath(s:include_x86, s:gtag_x86)
+command! ChangePathAllionS call ChangePath(s:include_xarina_arm, s:gtag_arm)
+command! ChangePathAllionS86 call ChangePath(s:include_xarina_arm, s:gtag_x86)
+
+"let g:marching_include_paths = filter(split(&path, ','), 'isdirectory(v:val)')
