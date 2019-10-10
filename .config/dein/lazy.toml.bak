@@ -1,0 +1,37 @@
+depends = 'context_filetype.vim'
+if = "has('nvim')"
+on_i = 1
+hook_source = '''
+    source ~/.config/nvim/plugins/deoplete.rc.vim
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+depends = ['deoplete.nvim']
+on_ft = ['c', 'cpp', 'cmake']
+hook_source = '''
+"    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+'''
+#
+#[[plugins]]
+#repo = 'zchee/deoplete-jedi'
+## on_i = 1
+#on_ft = 'python'
+#
+#[[plugins]]
+#repo = 'eagletmt/neco-ghc'
+## on_i = 1
+#on_ft = 'haskell'
+#hook_source = '''
+#    let g:haskellmode_completion_ghc = 0
+#    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+#'''
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+on_ft = ['c', 'cpp', 'cmake']
+hook_source = '''
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.9/lib/libclang-3.9.so"
+let g:deoplete#sources#clang#clang_header = "/usr/include/clang"
+'''
