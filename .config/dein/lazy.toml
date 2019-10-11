@@ -1,40 +1,39 @@
-[[plugins]]
-repo = 'eagletmt/neco-ghc'
-on_ft = 'haskell'
-hook_source = '''
-    let g:haskellmode_completion_ghc = 0
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-"    let g:necoghc_use_stack = 1
-'''
+#[[plugins]]
+#repo = 'eagletmt/neco-ghc'
+#on_ft = 'haskell'
+#hook_source = '''
+#    let g:haskellmode_completion_ghc = 0
+#    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+#"    let g:necoghc_use_stack = 1
+#'''
 
-[[plugins]]
-repo = 'zchee/deoplete-clang'
-on_ft = ['c', 'cpp', 'cmake']
-hook_source = '''
-    let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.9/lib/libclang-3.9.so"
-    let g:deoplete#sources#clang#clang_header = "/usr/include/clang"
-"    let g:deoplete#sources#clang#flags = [
-"        \ '-I/usr/include',
-"        \ '-I/usr/local/include'
-" \ ]
-'''
+#[[plugins]]
+#repo = 'zchee/deoplete-clang'
+#on_ft = ['c', 'cpp', 'cmake']
+#hook_source = '''
+#    let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.9/lib/libclang-3.9.so"
+#    let g:deoplete#sources#clang#clang_header = "/usr/include/clang"
+#"    let g:deoplete#sources#clang#flags = [
+#"        \ '-I/usr/include',
+#"        \ '-I/usr/local/include'
+#" \ ]
+#'''
 
 # [[plugins]]
 # repo = 'Shougo/neoinclude.vim'
 # on_ft = ['c', 'cpp', 'cmake']
 
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_ft= 'python'
-hook_add = '''
-   let g:deoplete#sources#jedi#python_path = "/usr/bin/python3.6"
-'''
+#[[plugins]]
+#repo = 'zchee/deoplete-jedi'
+#on_ft= 'python'
+#hook_add = '''
+#   let g:deoplete#sources#jedi#python_path = "/usr/bin/python3.6"
+#'''
 
 
-[[plugins]]
-# let g:python3_host_prog = "/usr/bin/python3"
+#[[plugins]]# let g:python3_host_prog = "/usr/bin/python3"
 # let g:jedi#force_py_version = 3
-repo = 'Vimjas/vim-python-pep8-indent'
+#repo = 'Vim#jas/vim-python-pep8-indent'
 #on_ft = ['python', 'python3']
-on_ft = 'python'
+#on_ft = 'python'
 

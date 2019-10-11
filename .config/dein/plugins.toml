@@ -32,10 +32,22 @@ hook_add = '''
 repo = 'Shougo/neomru.vim'
 
 
-[[plugins]] repo = "Shougo/deoplete.nvim"
+#[[plugins]]
+#repo = "Shougo/deoplete.nvim"
+#hook_add = '''
+#    source ~/.config/nvim/plugins/deoplete.rc.vim
+#'''
+
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+build = './install.sh nightly'
 hook_add = '''
-    source ~/.config/nvim/plugins/deoplete.rc.vim
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
 '''
+
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -49,22 +61,23 @@ hook_add = '''
     let g:ale_statusline_format = ['E%d', 'W%d', 'OK']
 '''
 
+
 [[plugins]] #ファイラー
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'kassio/neoterm'
 
-[[plugins]]
-repo = 'vim-scripts/gtags.vim'
-hook_add = '''
-	nmap <silent> <C-t> :GtagsCursor<CR>
-	nmap <C-n> :cn<CR>
-	nmap <C-p> :cp<CR>
-'''
+#[[plugins]]
+#repo = 'vim-scripts/gtags.vim'
+#hook_add = '''
+#	nmap <silent> <C-t> :GtagsCursor<CR>
+#	nmap <C-n> :cn<CR>
+#	nmap <C-p> :cp<CR>
+#'''
 
-[[plugins]]
-repo = 'ozelentok/denite-gtags'
+#[[plugins]]
+#repo = 'ozelentok/denite-gtags'
 
 
 
@@ -83,3 +96,5 @@ repo = 'kannokanno/previm'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
+
+
